@@ -6,9 +6,10 @@ namespace Arrays_and_Loops
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
             int[] numbers = { 7, 8, 9, 10, 11 };
-            PrintHighestLowest(numbers);
+            string[] Place = { "Home", "Motel", "School", "Factory", "Home", "Motel" };
+            string[] names = { "John", "F", "Kennedy" };
+            Console.WriteLine(string.Join(" ", FindDuplicate(Place)));
         }
         static void Question1()
         {   // looping  1 to 10
@@ -76,6 +77,54 @@ namespace Arrays_and_Loops
             }
             Console.WriteLine("MAX: " + Max);
             Console.WriteLine("MIN: " + Min);
+        }
+        static bool IsNameFound(string[] names)
+        {
+            string FindName = "F";
+            string Found = "F";
+            for (int i = 0; i < names.Length; i += 1)
+            {
+                if (names[i] == FindName)
+                {
+                    Found = "T";
+                }
+            }
+            if (Found == "T")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        static string[] FindDuplicate(string[] Place)
+        {
+            int NumOfDuplicates = 0;
+            for (int i = 0; i < Place.Length; i += 1)
+            {
+                for(int y = 0; y < Place.Length; y += 1)
+                {
+                    if(Place[i] == Place[y] && i != y)
+                    {
+                        NumOfDuplicates += 1;
+                    }
+                }
+            }
+            int Num = 0;
+            string[] Duplicates = new string[NumOfDuplicates];
+            for (int i = 0; i < Place.Length; i += 1)
+            {
+                for (int y = 0; y < Place.Length; y += 1)
+                {
+                    if(Place[i] == Place[y] && i != y)
+                    {
+                        Duplicates[Num] = Place[i];
+                        Num += 1;
+                    }
+                }
+            }
+            return Duplicates;
         }
     }
 }
